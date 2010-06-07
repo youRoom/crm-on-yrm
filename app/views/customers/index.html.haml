@@ -1,0 +1,10 @@
+- title "Customers"
+
+%table
+  %tr
+    %th Name
+  - for customer in @customers
+    %tr
+      %td= h customer[:name]
+
+%p= link_to "New Customer", new_customer_path
