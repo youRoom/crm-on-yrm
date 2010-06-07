@@ -1,10 +1,17 @@
 - title "Customers"
+- debugger
 
 %table
   %tr
     %th Name
+    %th 担当者
+    %th URL
+    %th youRoomへ
   - for customer in @customers
     %tr
-      %td= h customer[:name]
+      %td= h customer["entry"]["attachment"]["data"]['name']
+      %td= h customer["entry"]["attachment"]["data"]['account']
+      %td= link_to customer["entry"]["attachment"]["data"]['url']
+      %td= link_to "リンク", entry_url(customer["entry"], "r5")
 
 %p= link_to "New Customer", new_customer_path
