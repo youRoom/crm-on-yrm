@@ -1,17 +1,19 @@
 - title "Customers"
-- debugger
 
 %table
   %tr
-    %th Name
+    %th 社名
     %th 担当者
     %th URL
     %th youRoomへ
   - for customer in @customers
     %tr
-      %td= h customer["entry"]["attachment"]["data"]['name']
+      %td= link_to h(customer["entry"]["attachment"]["data"]['name']), {:action => :show, :id => customer["entry"]["id"]}
       %td= h customer["entry"]["attachment"]["data"]['account']
       %td= link_to customer["entry"]["attachment"]["data"]['url']
       %td= link_to "リンク", entry_url(customer["entry"], "r5")
+
+- (1..10).each do |i|
+  = link_to i, :page => i
 
 %p= link_to "New Customer", new_customer_path

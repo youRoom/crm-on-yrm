@@ -1,12 +1,19 @@
 - title "Customer"
 
 %p
-  %strong Name:
-  =h @customer.name
+  %strong 社名:
+  =h @customer["entry"]["attachment"]["data"]["name"]
+%p
+  %strong 担当者:
+  =h @customer["entry"]["attachment"]["data"]["account"]
+%p
+  %strong URL:
+  = link_to @customer["entry"]["attachment"]["data"]["url"]
+%p
+  %strong youRoomへ:
+  = link_to entry_url(@customer["entry"], "r5")
+
+%iframe{:src => entry_url(@customer["entry"], "r5"), :style => "width:100%;height:600px;"}
 
 %p
-  = link_to "Edit", edit_customer_path(@customer)
-  |
-  = link_to "Destroy", @customer, :confirm => 'Are you sure?', :method => :delete
-  |
   = link_to "View All", customers_path

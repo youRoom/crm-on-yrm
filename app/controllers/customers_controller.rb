@@ -1,22 +1,17 @@
 class CustomersController < ApplicationController
   def index
-    resp = client.get("http://r5.youroom.local:3000/?search_query=%23crm&format=json")
-    @customers = JSON.parse(resp.body)
+    @customers = Customer.all(params[:page], client)
   end
 
   def show
-    @customer = Customer.find(params[:id])
-  end
-
-  def new
-    @customer = Customer.new
+    @customer = Customer.find(params[:id], client)
   end
 
   def create
-    @customer = Customer.new(params[:customer])
-    if @customer.save
+    success, @customer = Customer.create(params[:customer], client)
+    if success
       flash[:notice] = "Successfully created customer."
-      redirect_to @customer
+      redirect_to :action => :index
     else
       render :action => 'new'
     end
