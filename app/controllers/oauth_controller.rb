@@ -12,6 +12,7 @@ class OauthController < ApplicationController
   def callback
     request_token = session[:request_token]
     access_token = request_token.get_access_token({}, :oauth_token => params[:oauth_token], :oauth_verifier => params[:oauth_verifier])
+    logger.info "[Login] Successfull #{access_token.token}"
 
     reset_session
     session[:atoken], session[:asecret] = access_token.token, access_token.secret
