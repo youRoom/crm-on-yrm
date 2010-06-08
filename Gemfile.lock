@@ -18,6 +18,8 @@ dependencies:
     group: 
     - :default
     version: ">= 0"
+    require: 
+    - oauth
   rspec: 
     group: 
     - :test
@@ -85,7 +87,7 @@ specs:
     version: 0.10.3
 - ruby-debug: 
     version: 0.10.3
-hash: 201f76b8dad3b8a865a683b683f773ce36478887
+hash: 76b815ec7bc30a52239cc4eb05464b62f5cdb542
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
