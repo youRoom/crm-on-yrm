@@ -1,4 +1,6 @@
-# Override your default settings for the Development environment here.
-# 
-# Example:
-#   configatron.file.storage = :local
+configatron.youroom.consumer.key = "AsuesLsQlNSqTmlr3off"
+configatron.youroom.consumer.secret = "n7xvBRGBfdtIm2jQ5T2U65T7XO2hmX3FJt5f7cJw"
+configatron.youroom.site_url = "http://youroom.local:3000"
+configatron.youroom.scheme = "http"
+configatron.youroom.root_host = "youroom.local"
+configatron.youroom.port = "3000"

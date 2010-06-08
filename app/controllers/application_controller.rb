@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def oauth
-    @oauth ||= OAuth::Consumer.new(configatron.youroom.consumer.key, configatron.youroom.consumer.secret, :site => configatron.youroom.url)
+    @oauth ||= OAuth::Consumer.new(configatron.youroom.consumer.key, configatron.youroom.consumer.secret, :site => configatron.youroom.site_url)
   end
 
   def client

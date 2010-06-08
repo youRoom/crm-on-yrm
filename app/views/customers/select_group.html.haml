@@ -1,0 +1,5 @@
+- title "Select group"
+
+- @groups.each do |group|
+  %p
+    = link_to h(group["group"]["name"]), :group => group["group"]["to_param"]

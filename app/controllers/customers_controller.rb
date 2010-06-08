@@ -1,14 +1,16 @@
 class CustomersController < ApplicationController
+  before_filter :set_group
+
   def index
-    @customers = Customer.all(params[:page], client)
+    @customers = Customer.all(params[:page], client, group_param)
   end
 
   def show
-    @customer = Customer.find(params[:id], client)
+    @customer = Customer.find(params[:id], client, group_param)
   end
 
   def create
-    success, @customer = Customer.create(params[:customer], client)
+    success, @customer = Customer.create(params[:customer], client, group_param)
     if success
       flash[:notice] = "Successfully created customer."
       redirect_to :action => :index
@@ -17,24 +19,16 @@ class CustomersController < ApplicationController
     end
   end
 
-  def edit
-    @customer = Customer.find(params[:id])
+  def group_param
+    session[:group]
   end
 
-  def update
-    @customer = Customer.find(params[:id])
-    if @customer.update_attributes(params[:customer])
-      flash[:notice] = "Successfully updated customer."
-      redirect_to @customer
-    else
-      render :action => 'edit'
+  def set_group
+    session[:group] = ERB::Util.h(params[:group]) if params[:group]
+    session[:group] = nil if params[:reset_group]
+    if session[:group].blank?
+      @groups = JSON.parse(client.get("#{Customer.base_url("home")}/groups/my.json").body)
+      render "select_group"
     end
-  end
-
-  def destroy
-    @customer = Customer.find(params[:id])
-    @customer.destroy
-    flash[:notice] = "Successfully destroyed customer."
-    redirect_to customers_url
   end
 end
