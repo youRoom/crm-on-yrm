@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
 
   def client
     return @client if @client
+    logger.info "[Auth] Access with #{session[:atoken]}"
     @client = OAuth::AccessToken.new(oauth, session[:atoken], session[:asecret])
   end
 end
