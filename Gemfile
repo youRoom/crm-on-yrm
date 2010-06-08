@@ -2,7 +2,7 @@
 source :gemcutter
 gem 'rails', '2.3.8', :require => nil
 gem 'postgres'
-gem "oauth"
+gem "oauth", :require => "oauth"
 gem "configatron"
 gem "json"
 
