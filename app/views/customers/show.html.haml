@@ -2,28 +2,31 @@
 
 %p
   %strong 社名:
-  =h @customer["entry"]["attachment"]["data"]["name"]
+  =h @customer.name
 %p
   %strong 担当者:
-  =h @customer["entry"]["attachment"]["data"]["account"]
+  =h @customer.account
 %p
   %strong TEL:
-  =h @customer["entry"]["attachment"]["data"]["tel"]
+  =h @customer.tel
 %p
   %strong Mail:
-  =h @customer["entry"]["attachment"]["data"]["mail"]
+  =h @customer.mail
 %p
   %strong URL:
-  = link_to h(@customer["entry"]["attachment"]["data"]["url"]), @customer["entry"]["attachment"]["data"]["url"]
+  = link_to h(@customer.url), @customer.url
 %p
   %strong Text:
-  = simple_format h @customer["entry"]["attachment"]["data"]["text"]
+  = simple_format h @customer.text
+
+%p
+  = link_to "編集", edit_customer_path(:id => @customer.id)
 
 %p
   %strong youRoomへ:
-  = link_to h(entry_url(@customer["entry"], session[:group])), entry_url(@customer["entry"], session[:group])
+  = link_to h(entry_url(@customer, session[:group])), entry_url(@customer, session[:group])
 
-%iframe{:src => entry_url(@customer["entry"], session[:group]), :style => "width:100%;height:600px;"}
+%iframe{:src => entry_url(@customer, session[:group]), :style => "width:100%;height:600px;"}
 
 %p
   = link_to "View All", customers_path

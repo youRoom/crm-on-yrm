@@ -1,8 +1,4 @@
 - title "Edit Customer"
 
-= render :partial => 'form'
-
-%p
-  = link_to "Show", customer_path(@customer)
-  |
-  = link_to "View All", customers_path
+- form_tag customer_path(:id => @customer.id), :method => :put do
+  = render :partial => 'form'

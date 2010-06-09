@@ -1,27 +1,26 @@
-- form_tag customers_path do
-  %p
-    = label_tag "customer[name]", "社名"
-    %br
-    = text_field_tag "customer[name]"
-  %p
-    = label_tag "customer[account]", "担当者名"
-    %br
-    = text_field_tag "customer[account]"
-  %p
-    = label_tag "customer[tel]", "TEL"
-    %br
-    = text_field_tag "customer[tel]"
-  %p
-    = label_tag "customer[mail]", "Mail"
-    %br
-    = text_field_tag "customer[mail]"
-  %p
-    = label_tag "customer[url]", "URL"
-    %br
-    = text_field_tag "customer[url]"
-  %p
-    = label_tag "customer[text]", "Text"
-    %br
-    = text_area_tag "customer[text]"
-  %p
-    = submit_tag "作成"
+%p
+  = label_tag "customer[name]", "社名"
+  %br
+  = text_field_tag "customer[name]", @customer.name
+%p
+  = label_tag "customer[account]", "担当者名"
+  %br
+  = text_field_tag "customer[account]", @customer.account
+%p
+  = label_tag "customer[tel]", "TEL"
+  %br
+  = text_field_tag "customer[tel]", @customer.tel
+%p
+  = label_tag "customer[mail]", "Mail"
+  %br
+  = text_field_tag "customer[mail]", @customer.mail
+%p
+  = label_tag "customer[url]", "URL"
+  %br
+  = text_field_tag "customer[url]", @customer.url
+%p
+  = label_tag "customer[text]", "Text"
+  %br
+  = text_area_tag "customer[text]", @customer.text
+%p
+  = submit_tag "作成"

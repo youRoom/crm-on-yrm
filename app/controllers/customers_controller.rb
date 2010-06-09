@@ -9,13 +9,31 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id], client, group_param)
   end
 
+  def new
+    @customer = Customer.new
+  end
+
   def create
-    success, @customer = Customer.create(params[:customer], client, group_param)
-    if success
+    result, @customer = Customer.create(params[:customer], client, group_param)
+    if result
       flash[:notice] = "Successfully created customer."
       redirect_to :action => :index
     else
       render :action => 'new'
+    end
+  end
+
+  def edit
+    @customer = Customer.find(params[:id], client, group_param)
+  end
+
+  def update
+    result, @customer = Customer.update(params[:customer], client, group_param, params[:id])
+    if result
+      flash[:notice] = "Successfully updated customer."
+      redirect_to :action => :show, :id => @customer.id
+    else
+      render :action => 'edit'
     end
   end
 

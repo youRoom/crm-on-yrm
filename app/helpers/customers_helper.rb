@@ -1,6 +1,6 @@
 module CustomersHelper
 
-  def entry_url(entry, group)
-    "#{Customer.base_url(u(group))}/entries/#{entry['id']}"
+  def entry_url(customer, group)
+    "#{Customer.base_url(u(group))}/entries/#{customer.id}"
   end
 end

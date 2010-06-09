@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => "customers", :only => %w(index show create)
+  map.root :controller => "customers"
 
   map.resources :customers
 

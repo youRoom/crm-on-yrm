@@ -11,14 +11,22 @@ class Customer
 
   def self.find(id, client, group)
     resp = client.get("#{base_url(group)}/entries/#{id}.json")
-    JSON.parse(resp.body)
+    new(JSON.parse(resp.body))
   end
 
   def self.create(attr, client, group)
+    resp = client.post("#{base_url(group)}/entries.json", post_body_from_attr(attr))
+    [resp.code == "201", new(JSON.parse(resp.body))]
+  end
+
+  def self.update(attr, client, group, entry_id)
+    resp = client.put("#{base_url(group)}/entries/#{entry_id}.json", post_body_from_attr(attr))
+    [resp.code == "201", new(JSON.parse(resp.body))]
+  end
+
+  def self.post_body_from_attr(attr)
     params = { :entry => { :content => entry_content(attr), :attachment_attributes => { :attachment_type => "crm", :data => attr } } }
     single_hash = Hash[URI.decode(params.to_query).split('&').map{ |item| item.split('=')}]
-    resp = client.post("#{base_url(group)}/entries.json", single_hash)
-    [resp.code == "201", JSON.parse(resp.body)]
   end
 
   def self.entry_content(attr)
@@ -36,4 +44,31 @@ URL:#{attr["url"]}
     URI.parse("#{configatron.youroom.scheme}://#{group}.#{configatron.youroom.root_host}:#{configatron.youroom.port}").to_s
   end
 
+  def initialize(json={})
+    @body = json
+  end
+
+  ATTRS = %w(name account tel mail url text).freeze
+
+  def entry
+    @body["entry"]
+  end
+
+  def attachment
+    entry && entry["attachment"]
+  end
+
+  def data
+    attachment && attachment["data"]
+  end
+
+  def id
+    entry && entry["id"]
+  end
+
+  ATTRS.each do |item|
+    define_method(item) do
+      self.data && self.data[item]
+    end
+  end
 end

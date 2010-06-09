@@ -1,5 +1,6 @@
 - title "New Customer"
 
-= render :partial => 'form'
+- form_tag customers_path do
+  = render :partial => 'form'
 
 %p= link_to "Back to List", customers_path
