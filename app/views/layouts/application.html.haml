@@ -7,6 +7,8 @@
     = yield(:head)
   %body
     #container
+      #logo{:style => "font-size:xx-large;"}
+        #{link_to "XXSimple CRM", root_path} on #{link_to "youRoom", "http://youroom.in"}
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
 

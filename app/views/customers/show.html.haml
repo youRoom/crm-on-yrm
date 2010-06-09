@@ -17,7 +17,8 @@
   = link_to h(@customer.url), @customer.url
 %p
   %strong Text:
-  = simple_format h @customer.text
+  .text{:style => "border: 1px solid silver; margin: 10px 20px; padding: 0 10px;"}
+    = simple_format h @customer.text
 
 %p
   = link_to "編集", edit_customer_path(:id => @customer.id)
