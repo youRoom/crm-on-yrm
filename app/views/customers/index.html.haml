@@ -4,13 +4,11 @@
   %tr
     %th 社名
     %th 担当者
-    %th URL
     %th youRoomへ
   - for customer in @customers
     %tr
       %td= link_to h(customer["entry"]["attachment"]["data"]['name']), {:action => :show, :id => customer["entry"]["id"]}
       %td= h customer["entry"]["attachment"]["data"]['account']
-      %td= link_to customer["entry"]["attachment"]["data"]['url']
       %td= link_to "リンク", entry_url(customer["entry"], session[:group])
 
 - (1..10).each do |i|

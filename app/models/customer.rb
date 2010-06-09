@@ -25,6 +25,8 @@ class Customer
     content = <<-EOF
 社名:#{attr["name"]}
 担当者:#{attr["account"]}
+TEL:#{attr["tel"]}
+Mail:#{attr["mail"]}
 URL:#{attr["url"]}
 #{@@crm_hash_tag}
     EOF

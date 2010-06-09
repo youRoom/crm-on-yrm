@@ -7,8 +7,18 @@
   %strong 担当者:
   =h @customer["entry"]["attachment"]["data"]["account"]
 %p
+  %strong TEL:
+  =h @customer["entry"]["attachment"]["data"]["tel"]
+%p
+  %strong Mail:
+  =h @customer["entry"]["attachment"]["data"]["mail"]
+%p
   %strong URL:
-  = link_to @customer["entry"]["attachment"]["data"]["url"]
+  = link_to h(@customer["entry"]["attachment"]["data"]["url"]), @customer["entry"]["attachment"]["data"]["url"]
+%p
+  %strong Text:
+  = simple_format h @customer["entry"]["attachment"]["data"]["text"]
+
 %p
   %strong youRoomへ:
   = link_to h(entry_url(@customer["entry"], session[:group])), entry_url(@customer["entry"], session[:group])
