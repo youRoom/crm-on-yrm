@@ -11,7 +11,7 @@
       %td= link_to h(customer["entry"]["attachment"]["data"]['name']), {:action => :show, :id => customer["entry"]["id"]}
       %td= h customer["entry"]["attachment"]["data"]['account']
       %td= link_to customer["entry"]["attachment"]["data"]['url']
-      %td= link_to "リンク", entry_url(customer["entry"], "r5")
+      %td= link_to "リンク", entry_url(customer["entry"], session[:group])
 
 - (1..10).each do |i|
   = link_to i, :page => i

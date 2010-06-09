@@ -11,9 +11,9 @@
   = link_to @customer["entry"]["attachment"]["data"]["url"]
 %p
   %strong youRoomへ:
-  = link_to entry_url(@customer["entry"], "r5")
+  = link_to entry_url(@customer["entry"], session[:group])
 
-%iframe{:src => entry_url(@customer["entry"], "r5"), :style => "width:100%;height:600px;"}
+%iframe{:src => entry_url(@customer["entry"], session[:group]), :style => "width:100%;height:600px;"}
 
 %p
   = link_to "View All", customers_path
