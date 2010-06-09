@@ -25,9 +25,9 @@
 
 %p
   %strong youRoomへ:
-  = link_to h(entry_url(@customer, session[:group])), entry_url(@customer, session[:group])
+  = link_to h(entry_url(@customer.id, session[:group])), entry_url(@customer.id, session[:group])
 
-%iframe{:src => entry_url(@customer, session[:group]), :style => "width:100%;height:600px;"}
+%iframe{:src => entry_url(@customer.id, session[:group]), :style => "width:100%;height:600px;"}
 
 %p
   = link_to "View All", customers_path
