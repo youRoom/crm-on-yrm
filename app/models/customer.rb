@@ -41,7 +41,7 @@ URL:#{attr["url"]}
   end
 
   def self.base_url(group)
-    URI.parse("#{configatron.youroom.scheme}://#{group}.#{configatron.youroom.root_host}:#{configatron.youroom.port}").to_s
+    URI.parse("#{configatron.youroom.scheme}://www.#{configatron.youroom.root_host}:#{configatron.youroom.port}/r/#{group}").to_s
   end
 
   def initialize(json={})
