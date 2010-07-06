@@ -45,8 +45,8 @@ class CustomersController < ApplicationController
     session[:group] = ERB::Util.h(params[:group]) if params[:group]
     session[:group] = nil if params[:reset_group]
     if session[:group].blank?
-      logger.info "[youRoom API] Get: #{Customer.base_url('home')}/groups/my.json"
-      @groups = JSON.parse(client.get("#{Customer.base_url('home')}/groups/my.json").body)
+      logger.info "[youRoom API] Get: #{Customer.base_url_without_group}/groups/my.json"
+      @groups = JSON.parse(client.get("#{Customer.base_url_without_group}/groups/my.json").body)
       render "select_group"
     end
   end
